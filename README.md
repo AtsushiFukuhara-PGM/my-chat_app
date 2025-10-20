@@ -1,3 +1,4 @@
+```markdown
 # 💬 My Chat App
 
 リアルタイムチャットアプリです。  
@@ -30,33 +31,37 @@
 
 ## 📂 ディレクトリ構成
 
+```
+
 my-chat-app/
-├─ server.js # サーバーエントリポイント
-├─ api.js # REST API（ユーザー登録・一覧・最新メッセージなど）
-├─ socket.js # Socket.ioイベント処理
-├─ db.js # MySQL接続プール
+├─ server.js              # サーバーエントリポイント
+├─ api.js                 # REST API（ユーザー登録・一覧・最新メッセージなど）
+├─ socket.js              # Socket.ioイベント処理
+├─ db.js                  # MySQL接続プール
 ├─ public/
-│ ├─ index.html # 画面構成（ログイン・チャット・モーダルなど）
-│ ├─ images/
-│ │ └─ bubbles/ # 吹き出し画像群
-│ ├─ css/
-│ │ ├─ style.css
-│ │ ├─ chat-main.css
-│ │ ├─ chat-message.css
-│ │ ├─ chat-bubble.css
-│ │ ├─ profile.css
-│ │ ├─ floating-modal.css
-│ │ ├─ animation.css
-│ │ ├─ modal.css
-│ │ └─ login.css
-│ └─ js/
-│ ├─ main.js
-│ ├─ chat.js
-│ ├─ chat-socket.js
-│ ├─ chat-ui.js
-│ ├─ bubble-ui.js
-│ └─ profile.js
+│  ├─ index.html          # 画面構成（ログイン・チャット・モーダルなど）
+│  ├─ images/
+│  │   └─ bubbles/        # 吹き出し画像群
+│  ├─ css/
+│  │   ├─ style.css
+│  │   ├─ chat-main.css
+│  │   ├─ chat-message.css
+│  │   ├─ chat-bubble.css
+│  │   ├─ profile.css
+│  │   ├─ floating-modal.css
+│  │   ├─ animation.css
+│  │   ├─ modal.css
+│  │   └─ login.css
+│  └─ js/
+│      ├─ main.js
+│      ├─ chat.js
+│      ├─ chat-socket.js
+│      ├─ chat-ui.js
+│      ├─ bubble-ui.js
+│      └─ profile.js
 └─ package.json
+
+````
 
 ---
 
@@ -80,15 +85,15 @@ cd my-chat-app
 
 # 依存パッケージのインストール
 npm install express socket.io mysql2
+````
 
 ---
 
-###3️⃣ データベースの作成
+### 3️⃣ データベースの作成
 
 MySQLにログインし、下記SQLを実行します：
 
-sql
-コードをコピーする
+```sql
 CREATE DATABASE my_chat_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE my_chat_app;
 
@@ -108,82 +113,111 @@ CREATE TABLE messages (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
-###4️⃣ DB設定ファイルの確認（db.js）
-js
-コードをコピーする
+```
+
+---
+
+### 4️⃣ DB設定ファイルの確認（`db.js`）
+
+```js
 export const pool = mysql.createPool({
   host: "localhost",
   user: "root",        // ← MySQLのユーザー名
   password: "",        // ← パスワード（必要に応じて変更）
   database: "my_chat_app",
 });
+```
+
 必要に応じて環境に合わせて変更してください。
 
-###5️⃣ サーバー起動
-bash
-コードをコピーする
+---
+
+### 5️⃣ サーバー起動
+
+```bash
 node server.js
+```
+
 実行後、ターミナルに下記のような表示が出れば成功です：
 
-arduino
-コードをコピーする
+```
 ✅ サーバー起動：http://localhost:3000
-#💻 使い方
-ブラウザで http://localhost:3000 を開く
+```
 
-既存ユーザーをクリック、または新規ユーザー名を入力して登録
+---
 
-他ブラウザや別タブで別ユーザーとしてログイン
+## 💻 使い方
 
-ユーザー一覧から相手を選択してチャット開始
+1. ブラウザで [http://localhost:3000](http://localhost:3000) を開く
+2. 既存ユーザーをクリック、または新規ユーザー名を入力して登録
+3. 他ブラウザや別タブで別ユーザーとしてログイン
+4. ユーザー一覧から相手を選択してチャット開始
+5. 「💬吹き出し追加」ボタンから画像付きメッセージを送信可能
 
-「💬吹き出し追加」ボタンから画像付きメッセージを送信可能
+---
 
-📡 主な通信仕様
-REST API
-メソッド	エンドポイント	説明
-GET /users	登録ユーザー一覧を取得	
-POST /register	新規ユーザー登録	
-GET /messages?user1=&user2=	双方のメッセージ履歴取得	
-GET /bubbles	吹き出し画像一覧を取得	
-POST /update-username	ユーザー名変更	
-GET /user-stats?userId=	各ユーザーの最新メッセージ・未読数を取得	
+## 📡 主な通信仕様
 
-Socket.io イベント
-イベント名	方向	概要
-chatMessage	双方向	通常メッセージ送受信
-bubbleMessage	双方向	吹き出しメッセージ送受信
-readMessages	クライアント → サーバー	既読更新通知
-messagesRead	サーバー → クライアント	既読完了通知
-usernameChanged	クライアント → サーバー	名前変更通知
-userListChanged	サーバー → クライアント	他ユーザー名変更反映
-newMessageNotice	サーバー → クライアント	相手が別ルームにいる場合の新着通知
+### REST API
 
-🎨 スクリーン概要
-ログイン画面：ユーザー選択と新規登録
+| メソッド                          | エンドポイント              | 説明 |
+| ----------------------------- | -------------------- | -- |
+| `GET /users`                  | 登録ユーザー一覧を取得          |    |
+| `POST /register`              | 新規ユーザー登録             |    |
+| `GET /messages?user1=&user2=` | 双方のメッセージ履歴取得         |    |
+| `GET /bubbles`                | 吹き出し画像一覧を取得          |    |
+| `POST /update-username`       | ユーザー名変更              |    |
+| `GET /user-stats?userId=`     | 各ユーザーの最新メッセージ・未読数を取得 |    |
 
-チャット画面：左にユーザーリスト、右にトークエリア
+---
 
-吹き出しモーダル：画像選択＋文字入力でカスタム送信
+### Socket.io イベント
 
-プロフィールモーダル：ユーザー名編集・保存
+| イベント名              | 方向            | 概要                |
+| ------------------ | ------------- | ----------------- |
+| `chatMessage`      | 双方向           | 通常メッセージ送受信        |
+| `bubbleMessage`    | 双方向           | 吹き出しメッセージ送受信      |
+| `readMessages`     | クライアント → サーバー | 既読更新通知            |
+| `messagesRead`     | サーバー → クライアント | 既読完了通知            |
+| `usernameChanged`  | クライアント → サーバー | 名前変更通知            |
+| `userListChanged`  | サーバー → クライアント | 他ユーザー名変更反映        |
+| `newMessageNotice` | サーバー → クライアント | 相手が別ルームにいる場合の新着通知 |
 
-右上フローティング情報：ログイン中ユーザーを常時表示
+---
 
-📘 今後の改善候補
-パスワード認証・セッション管理の導入
+## 🎨 スクリーン概要
 
-メッセージ削除・編集機能
+* **ログイン画面**：ユーザー選択と新規登録
+* **チャット画面**：左にユーザーリスト、右にトークエリア
+* **吹き出しモーダル**：画像選択＋文字入力でカスタム送信
+* **プロフィールモーダル**：ユーザー名編集・保存
+* **右上フローティング情報**：ログイン中ユーザーを常時表示
 
-オフラインメッセージ通知
+---
 
-Docker構成化・デプロイスクリプト追加
+## 📘 今後の改善候補
 
-🧑‍💻 作者メモ
-このプロジェクトは、バックエンド・フロントエンド・データベースを一貫して構築できる
+* パスワード認証・セッション管理の導入
+* メッセージ削除・編集機能
+* オフラインメッセージ通知
+* Docker構成化・デプロイスクリプト追加
+
+---
+
+## 🧑‍💻 作者メモ
+
+このプロジェクトは、**バックエンド・フロントエンド・データベースを一貫して構築できる**
 フルスタック開発のデモを目的としています。
 Node.js学習・Socket.ioの理解・リアルタイム通信の実装練習に最適です。
 
-🪄 ライセンス
+---
+
+## 🪄 ライセンス
+
 MIT License
 © 2025 あなたの名前（または GitHubユーザー名）
+
+---
+
+```
+```
