@@ -32,32 +32,33 @@
 
 ```bash
 my-chat-app/
-├─ server.js              # サーバーエントリポイント
-├─ api.js                 # REST API（ユーザー登録・一覧・最新メッセージなど）
-├─ socket.js              # Socket.ioイベント処理
-├─ db.js                  # MySQL接続プール
-├─ public/
-│  ├─ index.html          # 画面構成（ログイン・チャット・モーダルなど）
-│  ├─ images/
-│  │   └─ bubbles/        # 吹き出し画像群
-│  ├─ css/
-│  │   ├─ style.css
-│  │   ├─ chat-main.css
-│  │   ├─ chat-message.css
-│  │   ├─ chat-bubble.css
-│  │   ├─ profile.css
-│  │   ├─ floating-modal.css
-│  │   ├─ animation.css
-│  │   ├─ modal.css
-│  │   └─ login.css
-│  └─ js/
-│      ├─ main.js
-│      ├─ chat.js
-│      ├─ chat-socket.js
-│      ├─ chat-ui.js
-│      ├─ bubble-ui.js
-│      └─ profile.js
-└─ package.json
+├─ node_modules/                # npm依存パッケージ
+├─ public/                      # フロントエンド側ファイル
+│  ├─ index.html                # メインHTML
+│  ├─ style.css                 # 全体スタイル
+│  ├─ chat-main.css             # メインチャット画面レイアウト
+│  ├─ chat-message.css          # メッセージ表示関連
+│  ├─ chat-bubble.css           # 吹き出しUIスタイル
+│  ├─ profile.css               # プロフィールモーダル
+│  ├─ floating-modal.css        # 右上ログイン情報モーダル
+│  ├─ animation.css             # アニメーション定義
+│  ├─ modal.css                 # モーダル共通設定
+│  ├─ login.css                 # ログイン画面スタイル
+│  ├─ js/                       # フロントエンドJSモジュール
+│  │   ├─ main.js
+│  │   ├─ chat.js
+│  │   ├─ chat-socket.js
+│  │   ├─ chat-ui.js
+│  │   ├─ bubble-ui.js
+│  │   └─ profile.js
+│  └─ images/
+│      └─ bubbles/              # 吹き出し画像群
+├─ api.js                       # REST API（ユーザー登録・一覧・メッセージ取得など）
+├─ socket.js                    # Socket.io イベント処理
+├─ db.js                        # MySQL 接続プール設定
+├─ server.js                    # サーバーエントリポイント
+├─ package.json                 # 依存関係定義
+└─ package-lock.json            # npmロックファイル
 ````
 
 ---
