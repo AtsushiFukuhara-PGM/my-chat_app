@@ -1,3 +1,4 @@
+````markdown
 # 💬 My Chat App
 
 リアルタイムチャットアプリです。  
@@ -88,11 +89,36 @@ npm install express socket.io mysql2
 
 ### 3️⃣ データベースの作成
 
+MySQLにログインし、下記SQLを実行します：
+
+```sql
+CREATE DATABASE my_chat_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE my_chat_app;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) DEFAULT '',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  to_user_id INT NOT NULL,
+  message TEXT,
+  type ENUM('text','bubble') DEFAULT 'text',
+  is_read BOOLEAN DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
 ---
 
 ## 🗃️ データベース初期化（SQLファイルの利用）
 
-プロジェクトには `my-chat_app.sql` が含まれています。  
+プロジェクトには `my-chat_app.sql` が含まれています。
 これを MySQL または phpMyAdmin にインポートすることで、必要なテーブル構造を一括で作成できます。
 
 ---
@@ -100,42 +126,58 @@ npm install express socket.io mysql2
 ### 🔸 実行手順
 
 #### ▶ 方法①：phpMyAdminを使用する場合
-1. phpMyAdminを開く  
-2. 新しいデータベース `my-chat_app` を作成  
-3. 画面上部の「インポート」タブを選択  
+
+1. phpMyAdminを開く
+2. 新しいデータベース `my-chat_app` を作成
+3. 画面上部の「インポート」タブを選択
 4. `my-chat_app.sql` を選択して実行
 
 #### ▶ 方法②：ターミナルからインポートする場合
+
 ```bash
 mysql -u root -p my-chat_app < my-chat_app.sql
-🧩 作成されるテーブル構造
-users
-カラム名	型	説明
-id	INT	主キー（AUTO_INCREMENT）
-username	VARCHAR(50)	ユーザー名
-password	VARCHAR(255)	パスワード（現在は未使用）
-created_at	DATETIME	登録日時
+```
 
-messages
-カラム名	型	説明
-id	INT	主キー（AUTO_INCREMENT）
-user_id	INT	送信者ユーザーID
-to_user_id	INT	受信者ユーザーID
-message	TEXT	メッセージ内容
-type	VARCHAR(20)	メッセージ種別（text / bubble）
-is_read	TINYINT(1)	既読フラグ（0=未読,1=既読）
-created_at	DATETIME	送信日時
+---
 
-💡 注意事項
-⚠️ このSQLファイルにはダミーデータは含まれていません。
-任意でユーザー登録を行うと、users テーブルにデータが自動追加されます。
-messages テーブルもチャット送信時に自動で書き込まれます。
+### 🧩 作成されるテーブル構造
+
+#### **users**
+
+| カラム名       | 型            | 説明                  |
+| ---------- | ------------ | ------------------- |
+| id         | INT          | 主キー（AUTO_INCREMENT） |
+| username   | VARCHAR(50)  | ユーザー名               |
+| password   | VARCHAR(255) | パスワード（現在は未使用）       |
+| created_at | DATETIME     | 登録日時                |
+
+#### **messages**
+
+| カラム名       | 型           | 説明                     |
+| ---------- | ----------- | ---------------------- |
+| id         | INT         | 主キー（AUTO_INCREMENT）    |
+| user_id    | INT         | 送信者ユーザーID              |
+| to_user_id | INT         | 受信者ユーザーID              |
+| message    | TEXT        | メッセージ内容                |
+| type       | VARCHAR(20) | メッセージ種別（text / bubble） |
+| is_read    | TINYINT(1)  | 既読フラグ（0=未読,1=既読）       |
+| created_at | DATETIME    | 送信日時                   |
+
+---
+
+### 💡 注意事項
+
+> ⚠️ このSQLファイルにはダミーデータは含まれていません。
+> 任意でユーザー登録を行うと、`users` テーブルにデータが自動追加されます。
+> `messages` テーブルもチャット送信時に自動で書き込まれます。
 
 ---
 
 ### 4️⃣ DB設定ファイルの確認（`db.js`）
 
 ```js
+import mysql from "mysql2/promise";
+
 export const pool = mysql.createPool({
   host: "localhost",
   user: "root",        // ← MySQLのユーザー名
@@ -235,6 +277,8 @@ MIT License
 
 ---
 
-`````
+```
 
----
+🧭 **補足：この最終版は「そのままREADME.mdにコピペ可能」です。**  
+SQL説明部分は「3️⃣ データベースの作成」のすぐ下に挿入済みなので、そのまま運用すればOKです。
+```
