@@ -91,8 +91,8 @@ npm install express socket.io mysql2
 MySQLにログインし、下記SQLを実行します：
 
 ```sql
-CREATE DATABASE my_chat_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE my_chat_app;
+CREATE DATABASE `my-chat_app` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `my-chat_app`;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -105,12 +105,12 @@ CREATE TABLE messages (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   to_user_id INT NOT NULL,
-  message TEXT,
+  message TEXT, -- bubble時はJSON文字列を格納
   type ENUM('text','bubble') DEFAULT 'text',
-  is_read BOOLEAN DEFAULT 0,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  is_read TINYINT(1) DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 ```
 
 ---
