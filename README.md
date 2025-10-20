@@ -1,4 +1,9 @@
-```markdown
+Markdownのコードブロックが途中で閉じられていなかったのが原因です。
+以下の修正版をそのまま `README.md` に貼り付ければ、GitHub上で正しく整形されます👇
+
+---
+
+````markdown
 # 💬 My Chat App
 
 リアルタイムチャットアプリです。  
@@ -31,8 +36,7 @@
 
 ## 📂 ディレクトリ構成
 
-```
-
+```bash
 my-chat-app/
 ├─ server.js              # サーバーエントリポイント
 ├─ api.js                 # REST API（ユーザー登録・一覧・最新メッセージなど）
@@ -60,7 +64,6 @@ my-chat-app/
 │      ├─ bubble-ui.js
 │      └─ profile.js
 └─ package.json
-
 ````
 
 ---
@@ -71,8 +74,8 @@ my-chat-app/
 
 以下がインストールされていることを確認してください：
 
-- [Node.js (v18 以上推奨)](https://nodejs.org/)
-- [MySQL (8.x 推奨)](https://www.mysql.com/)
+* [Node.js (v18 以上推奨)](https://nodejs.org/)
+* [MySQL (8.x 推奨)](https://www.mysql.com/)
 
 ---
 
@@ -85,7 +88,7 @@ cd my-chat-app
 
 # 依存パッケージのインストール
 npm install express socket.io mysql2
-````
+```
 
 ---
 
@@ -219,5 +222,11 @@ MIT License
 
 ---
 
-```
-```
+`````
+
+---
+
+このバージョンなら、
+- コードブロック(````bash` や ````sql````)が正しく閉じられており  
+- GitHub上で表・見出し・区切り線がすべて整ったレイアウトになります。
+`````
