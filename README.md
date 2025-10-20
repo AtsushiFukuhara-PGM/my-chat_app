@@ -58,9 +58,6 @@ my-chat-app/
 │ └─ profile.js
 └─ package.json
 
-yaml
-コードをコピーする
-
 ---
 
 ## ⚙️ セットアップ手順
@@ -83,7 +80,11 @@ cd my-chat-app
 
 # 依存パッケージのインストール
 npm install express socket.io mysql2
-3️⃣ データベースの作成
+
+---
+
+###3️⃣ データベースの作成
+
 MySQLにログインし、下記SQLを実行します：
 
 sql
@@ -107,7 +108,7 @@ CREATE TABLE messages (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
-4️⃣ DB設定ファイルの確認（db.js）
+###4️⃣ DB設定ファイルの確認（db.js）
 js
 コードをコピーする
 export const pool = mysql.createPool({
@@ -118,7 +119,7 @@ export const pool = mysql.createPool({
 });
 必要に応じて環境に合わせて変更してください。
 
-5️⃣ サーバー起動
+###5️⃣ サーバー起動
 bash
 コードをコピーする
 node server.js
@@ -127,7 +128,7 @@ node server.js
 arduino
 コードをコピーする
 ✅ サーバー起動：http://localhost:3000
-💻 使い方
+#💻 使い方
 ブラウザで http://localhost:3000 を開く
 
 既存ユーザーをクリック、または新規ユーザー名を入力して登録
