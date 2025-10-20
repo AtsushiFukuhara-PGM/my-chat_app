@@ -1,0 +1,135 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&family=M+PLUS+Rounded+1c&family=Ubuntu:ital,wght@0,400;1,300&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <title>MY Chat</title>
+    <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="floating-modal.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="chat-main.css">
+    <link rel="stylesheet" href="chat-bubble.css">
+    <link rel="stylesheet" href="chat-message.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="modal.css">
+    
+</head>
+<body>
+    <!-- 全体ヘッダー -->
+    <header id="app-header">
+        <h1>My Chat</h1>
+    </header>
+
+    <!-- ユーザー選択、登録画面 -->
+    <div id="login-screen">
+        <h2>ユーザーを選択</h2>
+        <div id="user-list"></div>
+
+
+        <h3>または新規登録</h3>
+        <input type="text" id="new-username" placeholder="新しいユーザー名">
+        <button id="register-btn">登録</button>
+    </div>
+
+    <!-- チャット画面 -->
+    <div id="chat-screen" style="display: none;">
+        <div class="sidebar">
+            <h3>ユーザー一覧</h3>
+            <div id="user-list-sidebar"></div>
+            <div class="profile-section">
+                <img id="profile-icon" src="images/profile-icon.png" alt="プロフィール">
+                <div class="profile-label">プロフィール</div>
+            </div>
+        </div>
+        
+        <div class="chat-area">
+            <div class="chat-header">
+                <span id="chat-with">相手：（未選択）</span>
+            </div>
+
+            <div class="chat-box"></div>
+
+            <div class="input-box">
+                <textarea id="msg" placeholder="メッセージを入力"></textarea>
+                <button id="send">送信</button>
+                <!-- 吹き出し追加マーク -->
+                 <img id="add-bubble-btn"
+                 src="images/SSB-mark.png"
+                 alt="吹き出しを追加"
+                 class="add-bubble-icon">
+            </div>
+        </div>    
+    </div>
+    <!-- プロフィール編集モーダル -->
+     <div id="profile-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>プロフィール編集</h2>
+            <img id="my-icon" src="images/my-icon.png" alt="マイアイコン">
+            <label>名前：</label>
+            <div class="name-edit">
+                <span id="current-name"></span>
+                <input type="text" id="edit-name" placeholder="新しい名前">
+                <img id="rename-icon" src="images/rename-icon.png" alt="編集" class="rename-btn">
+            </div>
+            <button id="save-profile">保存</button>
+        </div>
+     </div>
+     <!-- ふき出し選択モーダル -->
+      <div id="bubble-modal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content bubble-modal-content">
+            <span id="close-bubble-modal" class="close">&times;</span>
+            <h2>吹き出しを選択してください</h2>
+            <div id="bubble-list"></div>
+
+            <!-- ふき出し編集エリア -->
+             <div id="bubble-editor" style="display: none;">
+                <div class="preview-area">
+                    <img src="" class="bubble-preview-img" id="bubble-preview">
+                    <div id="bubble-preview-text" class="bubble-preview-text">文字を入力</div>
+                </div>
+                <textarea placeholder="吹き出しに入れる文字" id="bubble-text"></textarea>
+                <div class="editor-controls">
+                    <label>フォントサイズ：
+                        <input type="number" id="bubble-font-size" value="18" min="10" max="60">
+                    </label>
+                    <label>文字色：
+                        <select id="bubble-font-color">
+                            <option value="black">黒</option>
+                            <option value="white">白</option>
+                            <option value="darkblue">濃い青</option>
+                            <option value="crimson">赤</option>
+                            <option value="darkgreen">緑</option>
+                            <option value="goldenrod">金</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="editor-buttons">
+                    <button id="bubble-back" class="bubble-btn secondary">戻る</button>
+                    <button id="bubble-confirm" class="bubble-btn">確定して投稿</button>
+                </div>
+             </div>
+        </div>
+      </div>
+      <!-- フローティングユーザーログイン状態モーダル -->
+      <div id="user-floating-info">
+        <div class="user-floating-inner">
+            <div id="floating-username"></div>
+            <div class="floating-status">ログイン中</div>
+        </div>
+      </div>
+      <!-- ログアウトボタン -->
+      <button id="logout-btn" class="logout-btn">ログアウト</button>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

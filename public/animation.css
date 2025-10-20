@@ -1,0 +1,40 @@
+/* animation.css */
+
+/* モーダル自体のアニメーション */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+/* モーダル背景のアニメーション */
+@keyframes backdropFadeIn{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+@keyframes backdropFadeOut{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+/* === 共通クラス === */
+.animate-fade-in {
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.animate-fade-out {
+  animation: fadeOutDown 0.4s ease forwards;
+}

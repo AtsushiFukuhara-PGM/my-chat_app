@@ -1,0 +1,136 @@
+/* profile.css */
+
+/* プロフィールセクション */
+.profile-section{
+    text-align: center;
+    margin-top: auto;
+    padding: 12px;
+    border-top: 4px solid lightgray;
+    background-color: whitesmoke;
+}
+#profile-icon{
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.2s,box-shadow 0.2s;
+}
+#profile-icon:hover{
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.profile-label{
+    font-size: 14px;
+    color: dimgray;
+    margin-top: 4px;
+    user-select: none;
+    transition: color 0.2s;
+}
+.profile-section:hover .profile-label{
+    color: cornflowerblue;
+}
+/* プロフィールモーダル画面 */
+#profile-modal .modal-content{
+    background: floralwhite;
+    width: 500px;
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.modal-content h2{
+    font-size: 30px;
+    color: darkslategray;
+    margin-bottom: 12px;
+}
+#my-icon{
+    display: block;
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px auto;
+    border: 2px solid lightgray;
+    background: white;
+}
+.modal-content label{
+    display: block;
+    margin-top: 10px;
+    color: dimgray;
+    font-size: 26px;
+}
+.name-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 2px 0;
+    padding: 4px;
+    min-height: 40px;
+    height: 40px;
+}
+#current-name{
+    font-size: 24px;
+    text-align: center;
+}
+#edit-name{
+    display: none;
+    font-size: 24px;
+    width: 80%;
+    max-width: 500px;
+    border: 2px solid silver;
+    border-radius: 6px;
+    background-color: white;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;   
+}
+/* セーブボタン */
+#save-profile{
+    font-size: 20px;
+    margin-top: 14px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: cornflowerblue;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s,box-shadow 0.2s;
+    cursor: pointer;
+}
+#save-profile:hover{
+    background-color: royalblue;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+/* 閉じるボタン */
+.close{
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 24px;
+    cursor: pointer;
+    color: darkgray;
+}
+.close:hover{
+    color: crimson;
+}
+/* リネームボタン */
+.rename-btn{
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    cursor: pointer;
+    vertical-align: middle;
+    opacity: 0.6;
+    transition: 0.2s;
+}
+.rename-btn:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}

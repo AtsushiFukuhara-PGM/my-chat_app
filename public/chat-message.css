@@ -1,0 +1,109 @@
+/* chat-message.css */
+
+/* メッセージ表示部分 */
+/* ブロック共通 */
+.message-block{
+  margin: 6px 0;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.message-block.self{
+  margin-left: auto;
+  text-align: right;
+}
+/* 上段：名前（枠外） */
+.meta-top{
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 2px;
+}
+.meta-top .msg-user{ font-weight: bold; }
+/* 中段：本文(枠内) + 時刻(枠外で横) */
+.message-row{
+  display: flex;
+  align-items: flex-end;       /* ベースラインを揃える */
+  gap: 6px;
+}
+.message-block.self .message-row{
+  flex-direction: row-reverse; /* 自分は時刻が左、本文が右端 */
+}
+.message-body{
+  display: inline-block;
+  background: floralwhite;
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px gray;
+text-align: left;
+}
+.message-body:has(.bubble-wrapper){
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+.message-block.self .message-body:has(.bubble-wrapper){
+  background: transparent;
+}
+.message-block.self .message-body{
+  background: lightgreen;
+}
+.msg-time{
+  font-size: 11px;
+  color: gray;
+  white-space: nowrap;
+}
+/* 下段：既読/未読（枠外で下） */
+.meta-bottom{
+  margin-top: 2px;
+  font-size: 11px;
+  color: gray;
+  text-align: left;
+}
+.message-block.self .meta-bottom{
+  text-align: right;
+}
+/* テキスト本文 */
+.msg-text{
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* 吹き出し */
+.bubble-wrapper{
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+.bubble-img{
+    display: block;
+    max-width: 260px;
+}
+.flipped .bubble-img{
+    transform: scaleX(-1);
+}
+.bubble-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  word-break: break-word;
+  width: 80%;
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* バブルが右寄せになるように調整 */
+.message-block.self .message-row{
+  justify-content: flex-end;
+}
+.message-block.self .bubble-wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+.message-block.self .bubble-img{
+    margin-left: auto;
+}
+.message-block.self .bubble-text{
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

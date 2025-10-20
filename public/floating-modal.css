@@ -1,0 +1,64 @@
+/* floating-modal.css */
+
+#user-floating-info {
+    position: fixed;
+    top: 8px;
+    right: 18px;
+    width: 92px;
+    height: 92px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Zen Maru Gothic", sans-serif;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+    z-index: 4000;
+    backdrop-filter: blur(6px);
+}
+/* アニメーション発火 */
+#user-floating-info.show{
+    display: flex;
+    animation: floatFadeIn 0.3s ease forwards;
+}
+.user-floating-inner{
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #dcdcdc;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.user-floating-inner:hover {
+    transform: scale(1.08)!important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+#floating-username {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+.floating-status {
+    font-size: 12px;
+    color: dimgray;
+    opacity: 0.8;
+}
+/* フローティングモーダル出現アニメーション */
+@keyframes floatFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}

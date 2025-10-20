@@ -1,0 +1,41 @@
+/* modal.css */
+
+.modal{
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.modal.show{
+    display: flex;
+}
+/* 背景レイヤー */
+.modal-backdrop{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: backdropFadeIn 0.4s ease forwards;
+}
+.modal.fade-out .modal-backdrop{
+    animation: backdropFadeOut 0.3s ease forwards;
+}
+/* モーダル本体 */
+.modal-content{
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    animation: fadeInUp 0.3s ease forwards;
+    animation-delay: 0.1s;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+/* モーダル自体は縮小 */
+.modal.fade-out .modal-content {
+    animation: fadeOutDown 0.3s ease forwards;
+}

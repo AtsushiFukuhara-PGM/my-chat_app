@@ -1,0 +1,76 @@
+/* login.css */
+
+#login-screen{
+    text-align: center;
+    margin-top: 100px;
+    animation: fadeIn 0.8s ease;
+}
+/* ユーザー選択 */
+.user-btn{
+    padding:12px 26px;
+    margin: 10px;
+    background: linear-gradient(135deg,dodgerblue,royalblue);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.user-btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    filter:brightness(1.1)
+}
+.user-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+/* 新規ユーザー登録 */
+#new-username {
+  padding: 10px;
+  margin-right: 8px;
+  border: 1.5px solid lightgray;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+#new-username:focus {
+  border-color: dodgerblue;
+  box-shadow: 0 0 5px rgba(30,144,255,0.4);
+  outline: none;
+}
+#register-btn {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, seagreen, mediumseagreen);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+#register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  filter: brightness(1.1);
+}
+#register-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* フェードインアニメーション */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

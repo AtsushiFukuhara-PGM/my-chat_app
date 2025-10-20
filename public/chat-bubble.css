@@ -1,0 +1,227 @@
+/* chat-bubble.css */
+
+/* 画像吹き出し追加 */
+.add-bubble-icon{
+    width: 32px;
+    height: 32px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+.add-bubble-icon:hover{
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+/* ふき出し選択モーダル */
+.bubble-modal-content{
+    background: rgba(255, 255, 255, 0.95)!important;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    padding: 20px;
+    width: 75vw!important;
+    height: 75vh!important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 2vh auto;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease,box-shadow 0.2s ease;
+}
+.bubble-modal h2{
+  display: block;
+}
+.bubble-modal-content.show{
+    animation: fadeInUp 0.3s ease forwards;
+}
+.bubble-modal-content.hide{
+    animation: fadeOutDown 0.3s ease forwards;
+}
+#bubble-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+}
+/* ふき出しサムネイル */
+.bubble-thumb{
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: contain;
+    aspect-ratio: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s,box-shadow 0.2s, border-color 0.2s;
+    background-color: white;
+    filter: drop-shadow(0 0 6px rgba(0,0,0,0.25));
+}
+.bubble-thumb:hover{
+    border-color: cornflowerblue;
+    transform: translateY(-4px) scale(1.05);
+    background-color: lavender;
+    filter: drop-shadow(0 0 10px rgba(100,149,237,0.5));
+}
+.bubble-thumb.selected{
+    border-color: royalblue;
+    box-shadow: 0 0 0 3px rgba(65,105,225,0.5);
+}
+/* ===== エディタ部分 ===== */
+#bubble-editor {
+  margin-top: 20px;
+  background: rgba(250,250,255,0.8);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+}
+/* プレビュー */
+.preview-area {
+  position: relative;
+  display: inline-block;
+  margin: 16px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  padding: 10px;
+}
+
+.bubble-preview-img {
+  width: 260px;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.bubble-preview-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  pointer-events: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+/* 入力欄 */
+#bubble-text {
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  height: 80px;
+  margin: 12px auto;
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: none;
+  background-color: white;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+#bubble-text:focus {
+  outline: none;
+  border-color: cornflowerblue;
+  box-shadow: 0 0 4px rgba(100,149,237,0.3);
+}
+/* ===== エディタ内コントロール ===== */
+.editor-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 12px;
+  padding: 10px 0;
+  background: rgba(255,255,255,0.6);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+/* 各ラベルを統一感ある並びに */
+.editor-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+  background: rgba(255,255,255,0.4);
+  padding: 6px 10px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+/* 数値入力（フォントサイズ） */
+#bubble-font-size {
+  width: 60px;
+  text-align: center;
+  padding: 4px 6px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  transition: 0.2s;
+}
+#bubble-font-size:focus {
+  outline: none;
+  border-color: cornflowerblue;
+  box-shadow: 0 0 4px rgba(100,149,237,0.4);
+}
+/* カラープルダウン */
+#bubble-font-color {
+  padding: 4px 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+#bubble-font-color:hover {
+  border-color: cornflowerblue;
+}
+/* プルダウンをやや可愛げある感じに */
+#bubble-font-color option {
+  padding: 4px;
+}
+/* 確定ボタン */
+.editor-buttons{
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.bubble-btn {
+  margin-top: 18px;
+  padding: 8px 18px;
+  background-color: cornflowerblue;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.bubble-btn:hover {
+  background-color: royalblue;
+  transform: scale(1.05);
+}
+/* 戻るボタン */
+.bubble-btn.secondary {
+  background-color: transparent;
+  color: #555;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+.bubble-btn.secondary:hover {
+  background-color: #eee;
+  border-color: #999;
+  transform: scale(1.05);
+}

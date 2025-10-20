@@ -1,0 +1,164 @@
+/* chat-main.css */
+
+/* チャット全体 */
+#chat-screen{
+    font-family: "Kiwi Maru","Zen Maru Gothic","メイリオ";
+    display: flex;
+    flex-direction: row;
+    margin-top: var(--header-height);
+    height: calc(100dvh - var(--header-height));
+    background: whitesmoke;
+}
+/* サイドバー */
+.sidebar{
+    font-family: "Kiwi Maru","Zen Maru Gothic","メイリオ";
+    width: 200px;
+    background: ghostwhite;
+    border-right: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: border-box;
+}
+.sidebar h3{
+    margin:0 0 8px;
+    font-size: 16px;
+}
+#user-list-sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.chat-user-btn{
+    border: none;
+    background: white;
+    color: black;
+    padding: 8px;
+    text-align: left;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid floralwhite;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s,box-shadow 0.2s;
+}
+.chat-user-btn:hover{
+    transform: scale(1.02);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.chat-user-btn.active{
+    background: rgb(255, 247, 230);
+}
+.user-main{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.user-name{
+    font-weight: bold;
+}
+.last-time{
+    font-size: 12px;
+    color: gray;
+}
+.last-msg{
+    display: inline-block;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.user-sub{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+    color: gray;
+}
+.badge{
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.msg-read{
+    font-size: 0.7rem;
+    color: gray;
+    margin-left: 4px;
+}
+/* チャットエリア */
+.chat-area{
+    flex: 1;
+    display: none;
+    flex-direction: column;
+}
+.chat-area.active{
+    display: flex;
+}
+.chat-header{
+    padding: 10px;
+    background: aliceblue;
+    border-bottom: 1px solid lightgray;
+    font-weight: bold;
+}
+.chat-box{
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+/* メッセージ送信欄 */
+.input-box{
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+    gap: 8px;
+}
+#msg{
+    flex: 1;
+    min-height: 40px;
+    max-height: 120px;
+    resize: none;
+    padding: 8px 10px;
+    font-size: 18px;
+    line-height: 1.4;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    outline: none;
+    transition: border-color 0.2s,box-shadow 0.2s;
+}
+#msg:focus{
+    border-color: cornflowerblue;
+    box-shadow: 0 0 4px rgba(100,149,237,0.4);
+}
+/* 送信ボタン */
+#send {
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s,box-shadow 0.2s;
+}
+#send:hover {
+    background-color: royalblue;
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+/* 送信ボタンと吹き出しアイコンの間隔を調整 */
+.add-bubble-icon {
+  margin-left: 6px;
+}
