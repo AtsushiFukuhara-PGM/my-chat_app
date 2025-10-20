@@ -32,7 +32,6 @@
 
 ```bash
 my-chat-app/
-├─ node_modules/                # npm依存パッケージ
 ├─ public/                      # フロントエンド側ファイル
 │  ├─ index.html                # メインHTML
 │  ├─ style.css                 # 全体スタイル
@@ -213,7 +212,7 @@ Node.js学習・Socket.ioの理解・リアルタイム通信の実装練習に�
 ## 🪄 ライセンス
 
 MIT License
-© 2025 あなたの名前（または GitHubユーザー名）
+© 2025 AtsushiFukuhara-PGM
 
 ---
 
