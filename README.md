@@ -88,29 +88,27 @@ npm install express socket.io mysql2
 
 ### 3️⃣ データベースの作成
 
-MySQLにログインし、下記SQLを実行します：
+---
 
-```sql
-CREATE DATABASE my_chat_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE my_chat_app;
+## 🗃️ データベース初期化（SQLファイルの利用）
 
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) DEFAULT ''
-);
+プロジェクトには `my-chat_app.sql` が含まれています。  
+これを MySQL または phpMyAdmin にインポートすることで、必要なテーブル構造を一括で作成できます。
 
-CREATE TABLE messages (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
-  to_user_id INT NOT NULL,
-  message TEXT,
-  type ENUM('text','bubble') DEFAULT 'text',
-  is_read BOOLEAN DEFAULT 0,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id)
-);
-```
+---
+
+### 🔸 実行手順
+
+#### ▶ 方法①：phpMyAdminを使用する場合
+1. phpMyAdminを開く  
+2. 新しいデータベース `my-chat_app` を作成  
+3. 画面上部の「インポート」タブを選択  
+4. `my-chat_app.sql` を選択して実行
+
+#### ▶ 方法②：ターミナルからインポートする場合
+```bash
+mysql -u root -p my-chat_app < my-chat_app.sql
+
 
 ---
 
